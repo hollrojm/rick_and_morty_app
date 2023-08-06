@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty_app/config/router/app_router.dart';
 import 'package:rick_and_morty_app/config/theme/app_theme.dart';
 
 void main() {
@@ -11,12 +12,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: AppTheme().getTheme(),
-        home: Scaffold(
-          body: Center(child: Text('Helloooo')),
-        ));
+    return MaterialApp.router(
+      routerConfig: appRouter,
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: AppTheme().getTheme(),
+    );
   }
 }
