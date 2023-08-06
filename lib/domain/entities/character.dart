@@ -37,7 +37,7 @@ class Info {
   int? count;
   int? pages;
   String? next;
-  dynamic prev;
+  String? prev;
 
   Info({
     this.count,

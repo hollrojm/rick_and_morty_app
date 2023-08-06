@@ -1,1 +1,1 @@
-abstract class CharacterRepository {}
+abstract class CharactersRepository {}
