@@ -1,5 +1,5 @@
-import 'package:rick_and_morty_app/domain/entities/character.dart';
+import 'package:rick_and_morty_app/infrastructure/models/character_response.dart';
 
 abstract class CharactersDataSource {
-  Future<Character> getCharacter({int page, String name});
+  Future<Character> getCharacter({required int page, required String name});
 }

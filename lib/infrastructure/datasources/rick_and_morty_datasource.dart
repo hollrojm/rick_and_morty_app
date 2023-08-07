@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:rick_and_morty_app/domain/datasources/characters_datasource.dart';
-import 'package:rick_and_morty_app/domain/entities/character.dart';
+import 'package:rick_and_morty_app/infrastructure/models/character_response.dart';
 import 'package:http/http.dart' as http;
 
 class CharacterDatasource extends CharactersDataSource {

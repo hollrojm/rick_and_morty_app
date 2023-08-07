@@ -7,7 +7,9 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/',
       name: CharactersScreen.name,
-      builder: (context, state) => const CharactersScreen(),
+      builder: (context, state) => CharactersScreen(
+        title: 'Rick and Morty',
+      ),
     )
   ],
 );
