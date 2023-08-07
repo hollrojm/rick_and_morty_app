@@ -12,11 +12,11 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final scrollController = ScrollController();
+  final scrollControllerOne = ScrollController();
   bool isLoading = false;
   late Character _currentCharacter;
   List<Result> _currentResults = [];
-  int _currentPage = 1;
+  int _currentPage = 0;
   String _currentSearchStr = '';
 
   @override
@@ -24,8 +24,20 @@ class _SearchScreenState extends State<SearchScreen> {
     if (_currentResults.isEmpty) {
       context
           .read<CharacterBloc>()
-          .add(const CharacterEvent.fetch(name: '', page: 1));
+          .add(CharacterEvent.fetch(name: '', page: _currentPage));
     }
+    scrollControllerOne.addListener(() async {
+      if (scrollControllerOne.position.pixels ==
+          scrollControllerOne.position.maxScrollExtent) {
+        setState(() {
+          isLoading = true;
+        });
+        _currentPage++;
+      }
+      setState(() {
+        isLoading = false;
+      });
+    });
     super.initState();
   }
 
@@ -87,7 +99,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 return _currentResults.isNotEmpty
                     ? Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: ((_customGridView(_currentResults))),
+                        child: ((_customGridView(
+                            _currentResults, scrollControllerOne, false))),
                       ) //Text('$_currentResults')
                     : const SizedBox();
               },
@@ -98,12 +111,13 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 }
 
-Widget _customGridView(List<Result> currentResult) {
+Widget _customGridView(List<Result> currentResult,
+    ScrollController scrollController, bool isLoading) {
   return GridView.builder(
     shrinkWrap: true,
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 0.87,
+        childAspectRatio: 0.83,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10),
     itemBuilder: (context, index) {
@@ -116,18 +130,46 @@ Widget _customGridView(List<Result> currentResult) {
           color: Colors.amber,
           child: Column(children: [
             FadeInImage(
-                placeholder:
-                    const AssetImage('assets/images/portal-rick-and-morty.gif'),
-                image: NetworkImage(result.image!)),
-            Text(
-              result.name!,
-              style: const TextStyle(
-                  fontSize: 16, overflow: TextOverflow.ellipsis),
-            )
+              placeholder:
+                  const AssetImage('assets/images/portal-rick-and-morty.gif'),
+              image: NetworkImage(result.image!),
+            ),
+            Text(result.name!),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                result.status! == 'unknown'
+                    ? const SizedBox()
+                    : result.status! == 'Alive'
+                        ? Container(
+                            height: 12,
+                            width: 12,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.green,
+                            ),
+                          )
+                        : Container(
+                            height: 12,
+                            width: 12,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.red,
+                            ),
+                          ),
+                SizedBox(width: 5),
+                result.status == 'Alive' || result.status == 'Dead'
+                    ? Text(
+                        "${result.status}",
+                      )
+                    : const SizedBox(),
+              ],
+            ),
           ]),
         ),
       );
     },
     itemCount: currentResult.length,
+    controller: scrollController,
   );
 }

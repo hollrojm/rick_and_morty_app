@@ -64,7 +64,7 @@ class Info {
 class Result {
   int? id;
   String? name;
-  Status? status;
+  String? status;
   Species? species;
   String? type;
   Gender? gender;
@@ -93,7 +93,7 @@ class Result {
   factory Result.fromJson(Map<String, dynamic> json) => Result(
         id: json["id"],
         name: json["name"],
-        status: statusValues.map[json["status"]]!,
+        status: json["status"],
         species: speciesValues.map[json["species"]]!,
         type: json["type"],
         gender: genderValues.map[json["gender"]]!,
@@ -114,7 +114,7 @@ class Result {
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
-        "status": statusValues.reverse[status],
+        "status": status,
         "species": speciesValues.reverse[species],
         "type": type,
         "gender": genderValues.reverse[gender],
