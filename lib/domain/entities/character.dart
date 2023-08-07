@@ -2,7 +2,7 @@
 //
 //     final character = characterFromJson(jsonString);
 
-import 'dart:convert';
+/*import 'dart:convert';
 
 Character characterFromJson(String str) => Character.fromJson(json.decode(str));
 
@@ -173,4 +173,4 @@ class EnumValues<T> {
     reverseMap = map.map((k, v) => MapEntry(v, k));
     return reverseMap;
   }
-}
+}*/

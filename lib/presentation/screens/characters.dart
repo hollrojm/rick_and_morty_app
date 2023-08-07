@@ -14,22 +14,31 @@ class CharactersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black54,
-        centerTitle: true,
-        title: Text(
-          title,
-          style: AppTheme().getTheme().textTheme.displaySmall,
+    return Stack(
+      children: [
+        Image.asset(
+          'assets/images/background.jpg',
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
         ),
-      ),
-      body: BlocProvider(
-        create: (context) => CharacterBloc(
-          charactersRepository: repository,
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: Colors.black54,
+            centerTitle: true,
+            title: Text(
+              title,
+              style: AppTheme().getTheme().textTheme.displaySmall,
+            ),
+          ),
+          body: BlocProvider(
+            create: (context) => CharacterBloc(
+              charactersRepository: repository,
+            ),
+            child: SearchScreen(),
+          ),
         ),
-        child: SearchScreen(),
-      ),
+      ],
     );
   }
 }

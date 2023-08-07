@@ -12,11 +12,11 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final scrollControllerOne = ScrollController();
+  final scrollController = ScrollController();
   bool isLoading = false;
   late Character _currentCharacter;
   List<Result> _currentResults = [];
-  int _currentPage = 0;
+  int _currentPage = 1;
   String _currentSearchStr = '';
 
   @override
@@ -26,9 +26,9 @@ class _SearchScreenState extends State<SearchScreen> {
           .read<CharacterBloc>()
           .add(CharacterEvent.fetch(name: '', page: _currentPage));
     }
-    scrollControllerOne.addListener(() async {
-      if (scrollControllerOne.position.pixels ==
-          scrollControllerOne.position.maxScrollExtent) {
+    scrollController.addListener(() async {
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
         setState(() {
           isLoading = true;
         });
@@ -100,7 +100,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ? Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ((_customGridView(
-                            _currentResults, scrollControllerOne, false))),
+                            _currentResults, scrollController, false))),
                       ) //Text('$_currentResults')
                     : const SizedBox();
               },
@@ -124,15 +124,18 @@ Widget _customGridView(List<Result> currentResult,
       final result = currentResult[index];
       return GestureDetector(
         onTap: () {
-          context.go('/character');
+          context.go('/character', extra: result);
         },
         child: Card(
           color: Colors.amber,
           child: Column(children: [
-            FadeInImage(
-              placeholder:
-                  const AssetImage('assets/images/portal-rick-and-morty.gif'),
-              image: NetworkImage(result.image!),
+            Hero(
+              tag: result.id!,
+              child: FadeInImage(
+                placeholder:
+                    const AssetImage('assets/images/portal-rick-and-morty.gif'),
+                image: NetworkImage(result.image!),
+              ),
             ),
             Text(result.name!),
             Row(
