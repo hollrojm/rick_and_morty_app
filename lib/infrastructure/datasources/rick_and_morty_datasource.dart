@@ -14,7 +14,7 @@ class CharacterDatasource extends CharactersDataSource {
           await http.get(Uri.parse('$baseUrl?page=$page&name=$name'));
 
       var jsonResult = json.decode(response.body);
-
+      print(jsonResult);
       return Character.fromJson(jsonResult);
     } catch (e) {
       throw Exception(e.toString());

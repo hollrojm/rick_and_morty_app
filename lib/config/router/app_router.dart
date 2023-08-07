@@ -5,11 +5,16 @@ final appRouter = GoRouter(
   initialLocation: '/',
   routes: [
     GoRoute(
-      path: '/',
-      name: CharactersScreen.name,
-      builder: (context, state) => CharactersScreen(
-        title: 'Rick and Morty',
-      ),
-    )
+        path: '/',
+        name: CharactersScreen.name,
+        builder: (context, state) => CharactersScreen(
+              title: 'Rick and Morty',
+            ),
+        routes: [
+          GoRoute(
+            path: 'character',
+            builder: (context, state) => const CharacterScreen(),
+          )
+        ])
   ],
 );
