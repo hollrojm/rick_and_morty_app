@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_app/config/theme/app_theme.dart';
 import 'package:rick_and_morty_app/domain/repositories/characters_repository.dart';
 import 'package:rick_and_morty_app/infrastructure/datasources/rick_and_morty_datasource.dart';
-import 'package:rick_and_morty_app/presentation/providers/bloc/character_bloc.dart';
+import 'package:rick_and_morty_app/presentation/providers/bloc/character_bloc/character_bloc.dart';
 import 'package:rick_and_morty_app/presentation/screens/search_screen.dart';
 
 class CharactersScreen extends StatelessWidget {
@@ -35,7 +35,7 @@ class CharactersScreen extends StatelessWidget {
             create: (context) => CharacterBloc(
               charactersRepository: repository,
             ),
-            child: SearchScreen(),
+            child: const SearchScreen(),
           ),
         ),
       ],

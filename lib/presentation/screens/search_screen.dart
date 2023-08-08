@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rick_and_morty_app/infrastructure/models/character_response.dart';
-import 'package:rick_and_morty_app/presentation/providers/bloc/character_bloc.dart';
+import 'package:rick_and_morty_app/presentation/providers/bloc/character_bloc/character_bloc.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

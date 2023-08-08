@@ -11,60 +11,6 @@ String episodeResponseToJson(EpisodeResponse data) =>
     json.encode(data.toJson());
 
 class EpisodeResponse {
-  Info? info;
-  List<Episode>? episodes;
-
-  EpisodeResponse({
-    this.info,
-    this.episodes,
-  });
-
-  factory EpisodeResponse.fromJson(Map<String, dynamic> json) =>
-      EpisodeResponse(
-        info: json["info"] == null ? null : Info.fromJson(json["info"]),
-        episodes: json["episodes"] == null
-            ? []
-            : List<Episode>.from(
-                json["Episodes"]!.map((x) => Episode.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "info": info?.toJson(),
-        "episodes": episodes == null
-            ? []
-            : List<dynamic>.from(episodes!.map((x) => x.toJson())),
-      };
-}
-
-class Info {
-  int? count;
-  int? pages;
-  String? next;
-  dynamic prev;
-
-  Info({
-    this.count,
-    this.pages,
-    this.next,
-    this.prev,
-  });
-
-  factory Info.fromJson(Map<String, dynamic> json) => Info(
-        count: json["count"],
-        pages: json["pages"],
-        next: json["next"],
-        prev: json["prev"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "count": count,
-        "pages": pages,
-        "next": next,
-        "prev": prev,
-      };
-}
-
-class Episode {
   int? id;
   String? name;
   String? airDate;
@@ -73,7 +19,7 @@ class Episode {
   String? url;
   DateTime? created;
 
-  Episode({
+  EpisodeResponse({
     this.id,
     this.name,
     this.airDate,
@@ -83,7 +29,8 @@ class Episode {
     this.created,
   });
 
-  factory Episode.fromJson(Map<String, dynamic> json) => Episode(
+  factory EpisodeResponse.fromJson(Map<String, dynamic> json) =>
+      EpisodeResponse(
         id: json["id"],
         name: json["name"],
         airDate: json["air_date"],

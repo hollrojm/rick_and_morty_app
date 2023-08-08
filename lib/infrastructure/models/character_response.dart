@@ -114,7 +114,7 @@ class Result {
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
-        "status": status,
+        "status": statusValues.reverse[status],
         "species": speciesValues.reverse[species],
         "type": type,
         "gender": genderValues.reverse[gender],

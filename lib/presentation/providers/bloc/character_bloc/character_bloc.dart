@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rick_and_morty_app/infrastructure/models/character_response.dart';
 import 'package:rick_and_morty_app/domain/repositories/characters_repository.dart';
 
-import '../../../infrastructure/datasources/rick_and_morty_datasource.dart';
+import '../../../../infrastructure/datasources/rick_and_morty_datasource.dart';
 
 part 'character_bloc.freezed.dart';
 //part 'character_bloc.g.dart';
@@ -11,7 +11,6 @@ part 'character_event.dart';
 part 'character_state.dart';
 
 class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
-  //ojo
   final CharacterDatasource charactersRepository;
   CharacterBloc({required this.charactersRepository})
       : super(const CharacterState.loading()) {
