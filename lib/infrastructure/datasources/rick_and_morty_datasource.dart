@@ -15,7 +15,6 @@ class CharacterDatasource extends CharactersDataSource {
       }));
 
       var jsonResult = json.decode(response.body);
-      print(jsonResult);
       return Character.fromJson(jsonResult);
     } catch (e) {
       throw Exception(e.toString());

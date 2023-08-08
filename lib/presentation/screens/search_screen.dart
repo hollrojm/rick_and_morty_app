@@ -17,7 +17,7 @@ class _SearchScreenState extends State<SearchScreen> {
   late Character _currentCharacter;
   List<Result> _currentResults = [];
   int _currentPage = 1;
-  String _currentSearchStr = '';
+  final String _currentSearchStr = '';
 
   @override
   void initState() {
