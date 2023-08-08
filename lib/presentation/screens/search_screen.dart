@@ -160,7 +160,7 @@ Widget _customGridView(List<Result> currentResult,
                               color: Colors.red,
                             ),
                           ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 result.status == 'Alive' || result.status == 'Dead'
                     ? Text(
                         "${result.status}",
