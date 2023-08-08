@@ -1,4 +1,3 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty_app/config/theme/app_theme.dart';
 import 'package:rick_and_morty_app/infrastructure/models/location_response.dart';

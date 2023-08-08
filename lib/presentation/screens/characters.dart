@@ -4,6 +4,7 @@ import 'package:rick_and_morty_app/config/theme/app_theme.dart';
 import 'package:rick_and_morty_app/infrastructure/datasources/rick_and_morty_datasource.dart';
 import 'package:rick_and_morty_app/presentation/providers/bloc/character_bloc/character_bloc.dart';
 import 'package:rick_and_morty_app/presentation/screens/search_screen.dart';
+import 'package:rick_and_morty_app/presentation/widgets/search_delegate.dart';
 
 class CharactersScreen extends StatelessWidget {
   static const name = 'characters-screen';
@@ -25,6 +26,13 @@ class CharactersScreen extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.black54,
             centerTitle: true,
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    showSearch(context: context, delegate: SearchCharacter());
+                  },
+                  icon: const Icon(Icons.search))
+            ],
             title: Text(
               title,
               style: AppTheme().getTheme().textTheme.displaySmall,

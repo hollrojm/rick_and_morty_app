@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rick_and_morty_app/config/theme/app_theme.dart';
 import 'package:rick_and_morty_app/presentation/providers/provider/location_provider.dart';
-import 'package:rick_and_morty_app/presentation/screens/location_detail_screen%20copy.dart';
+import 'package:rick_and_morty_app/presentation/screens/location_detail_screen.dart';
 
 class LocationsList extends StatefulWidget {
   const LocationsList({super.key});

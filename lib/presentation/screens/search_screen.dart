@@ -47,33 +47,6 @@ class _SearchScreenState extends State<SearchScreen> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Padding(
-            padding:
-                const EdgeInsets.only(top: 15, bottom: 1, left: 16, right: 16),
-            child: TextField(
-              style: const TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: const Color.fromRGBO(86, 86, 86, 0.8),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide.none),
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-                hintStyle: const TextStyle(color: Colors.white),
-              ),
-              onChanged: (value) {
-                _currentPage = 1;
-                _currentResults = [];
-                _currentSearchStr = value;
-                context
-                    .read<CharacterBloc>()
-                    .add(CharacterEvent.fetch(name: value, page: _currentPage));
-              },
-            ),
-          ),
           state.when(
               loading: () {
                 return const Center(
